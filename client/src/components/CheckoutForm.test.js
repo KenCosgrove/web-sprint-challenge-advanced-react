@@ -23,10 +23,10 @@ test("form shows success message on submit with form details", () => {
     })
 
     fireEvent.change(firstName,{
-        target: {value: 'AJ'}
+        target: {value: 'Jerry'}
     })
     fireEvent.change(lastName,{
-        target: {value: 'Gambino'}
+        target: {value: 'Seinfeld'}
     })
     fireEvent.change(address,{
         target: {value: '129 West 81st St'}
@@ -38,15 +38,9 @@ test("form shows success message on submit with form details", () => {
         target: {value: 'NY'}
     })
     fireEvent.change(zip,{
-        target: {value: '99999'}
+        target: {value: '10024'}
     })
 
-    //click event
     fireEvent.click(submitBtn)
-
-
-
-
-
 
 });
