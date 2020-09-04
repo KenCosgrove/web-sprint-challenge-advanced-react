@@ -5,7 +5,11 @@ import CheckoutForm from "./CheckoutForm";
 // Write up the two tests here and make sure they are testing what the title shows
 
 test("form header renders", () => {
-    render(<CheckoutForm />)
+    render(<CheckoutForm />);
+
+    const header = screen.getByText(/checkout form/i);
+
+    expect(header).toBeInTheDocument();
 });
 
 test("form shows success message on submit with form details", () => {
@@ -18,16 +22,13 @@ test("form shows success message on submit with form details", () => {
     const city = screen.getByLabelText(/city:/i)
     const state = screen.getByLabelText(/state:/i)
     const zipCode = screen.getByLabelText(/zip:/i)
-    const submitBtn = screen.getByRole('button', {
-        name: /checkout/i
-    })
 
     fireEvent.change(firstName,{
         target: {value: 'Jerry'}
     })
     fireEvent.change(lastName,{
         target: {value: 'Seinfeld'}
-    })
+    }) 
     fireEvent.change(address,{
         target: {value: '129 West 81st St'}
     })
@@ -37,10 +38,10 @@ test("form shows success message on submit with form details", () => {
     fireEvent.change(state,{
         target: {value: 'NY'}
     })
-    fireEvent.change(zip,{
+    fireEvent.change(zipCode,{
         target: {value: '10024'}
     })
 
-    fireEvent.click(submitBtn)
-
-});
+    const checkout = screen.getByRole('button', {name: /checkout/i})
+    fireEvent.click(checkout)
+}); 
