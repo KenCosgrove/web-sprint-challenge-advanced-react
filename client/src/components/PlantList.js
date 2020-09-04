@@ -6,7 +6,8 @@ export default class PlantList extends Component {
 constructor() {
   super();
   this.state = {
-    plants: []
+    plants: [],
+    search: '',
   }
 }
   // when the component mounts:
@@ -20,14 +21,17 @@ componentDidMount(){
   })
 }
 
-
+onChange = e => {
+  this.setState({search: e.target.value})
+}
 
 
   /*********  DON'T CHANGE ANYTHING IN THE RENDER FUNCTION *********/
   render() {
     return (
       <main className="plant-list">
-        {this.state?.plants?.map((plant) => (
+         <input type="text" placeholder="search plants" onChange={this.onChange} />
+         {this.state.plants.filter(plant=> plant.name.toUpperCase().includes(this.state.search.toUpperCase())).map((plant) => (
           <div className="plant-card" key={plant.id}>
             <img className="plant-image" src={plant.img} alt={plant.name} />
             <div className="plant-details">
